@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get install nginx -y
+  pre_build:
+    commands:
+      - echo "Nginx installation complete."
+  build:
+    commands:
+      - cp -r * /var/www/html/
+      - zip -r app.zip /var/www/html
+  post_build:
+    commands:
+      - echo "Build completed on `04/03/2023`"
+
+artifacts:
+  files:
+    - '**/*'
